@@ -1,0 +1,16 @@
+services:
+  #DATABASE
+  db:
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: dustybust
+
+  #BACKEND
+  adminer:
+    image: adminer:latest
+    restart: always
+    ports:
+      - 8081:8080
