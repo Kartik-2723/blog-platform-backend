@@ -1,7 +1,9 @@
 package com.kartik.blog.controllers;
 
+import com.kartik.blog.domain.UpdateCategoryRequest;
 import com.kartik.blog.domain.dtos.CategoryDto;
 import com.kartik.blog.domain.dtos.CreateCategoryRequest;
+import com.kartik.blog.domain.dtos.UpdateCategoryRequestDto;
 import com.kartik.blog.domain.entities.Category;
 import com.kartik.blog.mappers.CategoryMapper;
 import com.kartik.blog.services.CategoryService;

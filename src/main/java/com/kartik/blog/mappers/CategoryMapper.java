@@ -1,18 +1,19 @@
 package com.kartik.blog.mappers;
 
 import com.kartik.blog.domain.PostStatus;
+import com.kartik.blog.domain.UpdateCategoryRequest;
 import com.kartik.blog.domain.dtos.CategoryDto;
 import com.kartik.blog.domain.dtos.CreateCategoryRequest;
+import com.kartik.blog.domain.dtos.UpdateCategoryRequestDto;
 import com.kartik.blog.domain.entities.Category;
 import com.kartik.blog.domain.entities.Post;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.Named;
-import org.mapstruct.ReportingPolicy;
+import org.mapstruct.*;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
+@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE,
+        nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE
+)
 public interface CategoryMapper {
 
     @Mapping(target = "postCount", source = "posts" , qualifiedByName = "calculatePostCount")

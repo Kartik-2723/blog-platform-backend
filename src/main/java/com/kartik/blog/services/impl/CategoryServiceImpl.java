@@ -1,12 +1,15 @@
 package com.kartik.blog.services.impl;
 
 
+import com.kartik.blog.domain.UpdateCategoryRequest;
+import com.kartik.blog.domain.UpdatePostRequest;
 import com.kartik.blog.domain.entities.Category;
 import com.kartik.blog.repositories.CategoryRepository;
 import com.kartik.blog.services.CategoryService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -50,6 +53,18 @@ public class CategoryServiceImpl implements CategoryService {
     public Category getCategoryById(UUID id) {
         return  categoryRepository.findById(id)
                 .orElseThrow(()-> new EntityNotFoundException("Category not found with id"+id));
+    }
+
+    @Override
+    @Transactional
+    public Category updateCategory(UUID id, UpdateCategoryRequest updateCategoryRequest) {
+        Category old =  categoryRepository.findById(id).orElseThrow(() ->
+                new EntityNotFoundException("Category not Found"));
+
+        old.setName(updateCategoryRequest.getName());
+        categoryRepository.save(old);
+
+        return old;
     }
 
 }
