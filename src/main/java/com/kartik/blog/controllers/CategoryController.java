@@ -33,6 +33,22 @@ public class CategoryController {
         return ResponseEntity.ok(categories);
     }
 
+    @PutMapping(path = "/{id}")
+    public ResponseEntity<CategoryDto> updateCategory(
+            @PathVariable UUID id,
+            @Valid @RequestBody UpdateCategoryRequestDto updateCategoryRequestDto
+            ){
+
+        if (!id.equals(updateCategoryRequestDto.getId())) {
+            throw new IllegalArgumentException("Path ID and body ID must match");
+        }
+
+        UpdateCategoryRequest updatecategoryRequest = categoryMapper.toUpdatecategoryRequest(updateCategoryRequestDto);
+        Category category = categoryService.updateCategory(id, updatecategoryRequest);
+        CategoryDto dto = categoryMapper.toDto(category);
+        return ResponseEntity.ok(dto);
+    }
+
     @PostMapping
     public ResponseEntity<CategoryDto> createCategory(
             @Valid @RequestBody CreateCategoryRequest createCategoryRequest )
