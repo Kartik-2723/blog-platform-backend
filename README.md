@@ -1,5 +1,5 @@
 
-# ***Spring Security–based Spring Boot backend for a blog platform.
+# Spring Security–based Spring Boot backend for a blog platform.
 
 ***This project focuses on building a secure, RESTful backend using Spring Boot, Spring Security, JWT authentication, and JPA with PostgreSQL.***
 
