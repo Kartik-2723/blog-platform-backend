@@ -20,6 +20,9 @@ public interface CategoryMapper {
 
     Category toEntity(CreateCategoryRequest createCategoryRequest);
 
+    @Mapping(target = "name", source = "name")
+    UpdateCategoryRequest toUpdatecategoryRequest(UpdateCategoryRequestDto updateCategoryRequestdto);
+
     @Named("calculatePostCount")
     default long calculatePostCount(List<Post> posts){
 
